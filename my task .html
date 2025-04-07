@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: black;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        header {
+            background-color: lightskyblue;
+            font-size: 24px;
+            padding: 15px;
+            border: 3px solid black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #input {
+            text-align: center;
+            padding: 15px;
+        }
+        input {
+            width: 80%;
+            max-width: 500px;
+            height: 30px;
+            font-size: 18px;
+            background-color: darkgray;
+            border: 2px solid white;
+            padding: 5px;
+        }
+        button {
+            background-color: cadetblue;
+            color: red;
+            border: 2px groove antiquewhite;
+            border-radius: 5px;
+            padding: 8px;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+        }
+        section {
+            padding: 10px;
+            border: 3px solid black;
+            border-radius: 10px;
+            background-color: darkseagreen;
+            width: 90%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .more {
+            background-color: black;
+            color: white;
+            width: fit-content;
+            border-radius: 15px;
+            padding: 10px;
+            position: absolute;
+            right: 10px;
+            top: 100px;
+            display: none;
+        }
+        .more h3 {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            header {
+                font-size: 20px;
+                flex-direction: column;
+            }
+            header i {
+                margin: 10px 0;
+            }
+            input, button {
+                width: 100%;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="top">
+        <h1>My Task</h1>
+        <i class="fa-solid fa-caret-down" onclick="show()"></i>
+    </header>
+    <div id="input">
+        <input type="text" id="int" placeholder="Make your list">
+        <button onclick="addd()">ADD</button>
+    </div>
+    <div class="container"></div>
+    <div class="more">
+        <p><i class="fa-solid fa-xmark" onclick="cls()"></i></p>
+        <h3 onclick="clr()">Clear All</h3>
+        <h3 onclick="color()">Change Theme</h3>
+    </div>
+
+    <script>
+        var input = document.getElementById("int");
+        var container = document.querySelector(".container");
+        
+        function addd() {
+            if (input.value.trim() === "") {
+                alert("Please enter a task!");
+                return;
+            }
+            var section = document.createElement("section");
+            section.innerHTML = input.value + " <button onclick='remove(event)'>Delete</button> <button onclick='change(event)'>Incomplete</button>";
+            container.append(section);
+            input.value = "";
+        }
+        function change(event) {
+            event.target.textContent = "Completed";
+            event.target.style.backgroundColor = "lightgreen";
+            event.target.style.color = "black";
+        }
+        function remove(event) {
+            event.target.parentElement.remove();
+        }
+        function clr() {
+            document.querySelector(".container").innerHTML = "";
+        }
+        function color() {
+            document.body.style.backgroundColor = "white";
+            document.querySelector("header").style.backgroundColor = "black";
+            document.querySelector("header").style.color = "white";
+            document.querySelector("i").style.color = "red";
+            document.querySelectorAll("button").forEach(btn => btn.style.backgroundColor = "black");
+        }
+        function show() {
+            document.querySelector(".more").style.display = "block";
+        }
+        function cls() {
+            document.querySelector(".more").style.display = "none";
+        }
+    </script>
+</body>
+</html>
