@@ -1,52 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO LIST</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
+
         body {
-            background-color: black;
+            background-color: aliceblue;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
-            text-align: center;
+
         }
+
         header {
-            background-color: lightskyblue;
+            background-color: white;
+            color: black;
             font-size: 24px;
-            padding: 15px;
-            border: 3px solid black;
+            font-style: italic;
+            padding: 25px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
-        #input {
-            text-align: center;
-            padding: 15px;
+
+        header i {
+            padding-right: 20px;
+            font-size: 40px;
+            position: absolute;
+            top: 40px;
+            right: 130px;
         }
+
+        header button {
+            padding: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: none;
+            background-color: lightblue;
+            color: darkblue;
+            position: absolute;
+            top: 40px;
+            right: 30px;
+        }
+
+        #input {
+            text-align: left;
+            padding: 15px;
+            margin-top: 30px;
+            margin-left: 150px;
+            color: black;
+        }
+
         input {
             width: 80%;
             max-width: 500px;
             height: 30px;
             font-size: 18px;
-            background-color: darkgray;
-            border: 2px solid white;
+            border: none;
+            background-color: transparent;
+            margin: 10px;
+            border-bottom: 2px solid black;
             padding: 5px;
+           
         }
-        button {
-            background-color: cadetblue;
-            color: red;
+        input:focus{
+           outline: none;
+        }
+
+        #addbtn {
+            background-color: white;
+            color: black;
             border: 2px groove antiquewhite;
             border-radius: 5px;
-            padding: 8px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 10px;
+            padding-left: 10px;
+            font-size: 30px;
             cursor: pointer;
         }
+
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -54,18 +96,41 @@
             gap: 10px;
             padding: 10px;
         }
+
         section {
             padding: 10px;
             border: 3px solid black;
+            color: black;
             border-radius: 10px;
-            background-color: darkseagreen;
+            background-color: white;
             width: 90%;
             max-width: 600px;
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
             flex-wrap: wrap;
         }
+
+        section button {
+            background: linear-gradient(135deg, #ffffff, #f8f8f8);
+            color: #333;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 5px 15px;
+            margin-left: 70px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        section button:hover {
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
         .more {
             background-color: black;
             color: white;
@@ -77,79 +142,118 @@
             top: 100px;
             display: none;
         }
+
         .more h3 {
             margin-bottom: 10px;
             cursor: pointer;
         }
+
         @media (max-width: 768px) {
             header {
                 font-size: 20px;
                 flex-direction: column;
+                height: 100px;
             }
-            header i {
-                margin: 10px 0;
+
+           header i {
+                right: 60px;
+                font-size: 25px;
+                color: blue;
             }
-            input, button {
-                width: 100%;
+            header button{
+                right:5px;
+                font-size: 13px;
+                padding: 0px;
+                background-color: transparent;
+                top: 45px;
+                right: 15px;
+            }
+            header h1{
+                position:absolute;
+                left: 10px;
+            }
+            
+            #input{
+                 margin-left: 10px;
+            }
+            input
+            {
+                width: 90%;
                 margin-top: 5px;
+                margin-left: 10px;
+            }
+            #addbtn{
+                margin-left: 80%;
+                
+            }
+            section button{
+                padding: 5px;
+                font-size: small;
+                margin-left: 10px;
             }
         }
     </style>
 </head>
+
 <body>
     <header id="top">
         <h1>My Task</h1>
-        <i class="fa-solid fa-caret-down" onclick="show()"></i>
-    </header>
-    <div id="input">
-        <input type="text" id="int" placeholder="Make your list">
-        <button onclick="addd()">ADD</button>
-    </div>
-    <div class="container"></div>
-    <div class="more">
-        <p><i class="fa-solid fa-xmark" onclick="cls()"></i></p>
-        <h3 onclick="clr()">Clear All</h3>
-        <h3 onclick="color()">Change Theme</h3>
-    </div>
-
-    <script>
-        var input = document.getElementById("int");
-        var container = document.querySelector(".container");
+        <i class="fa-solid fa-moon" id="#moon" onclick="color()"></i>
+        <button onclick="clr()">Clear All</button>
         
-        function addd() {
-            if (input.value.trim() === "") {
-                alert("Please enter a task!");
-                return;
-            }
-            var section = document.createElement("section");
-            section.innerHTML = input.value + " <button onclick='remove(event)'>Delete</button> <button onclick='change(event)'>Incomplete</button>";
-            container.append(section);
-            input.value = "";
-        }
-        function change(event) {
-            event.target.textContent = "Completed";
-            event.target.style.backgroundColor = "lightgreen";
-            event.target.style.color = "black";
-        }
-        function remove(event) {
-            event.target.parentElement.remove();
-        }
-        function clr() {
-            document.querySelector(".container").innerHTML = "";
-        }
-        function color() {
-            document.body.style.backgroundColor = "white";
-            document.querySelector("header").style.backgroundColor = "black";
-            document.querySelector("header").style.color = "white";
-            document.querySelector("i").style.color = "red";
-            document.querySelectorAll("button").forEach(btn => btn.style.backgroundColor = "black");
-        }
-        function show() {
-            document.querySelector(".more").style.display = "block";
-        }
-        function cls() {
-            document.querySelector(".more").style.display = "none";
-        }
-    </script>
+    </header>
+    <main>
+
+        <div id="input">
+            <h1>Your To Do</h1>
+            <input type="text" id="int" placeholder="Make your list">
+            <button id="addbtn" onclick="addd()">+</button>
+        </div>
+        <div class="container"></div>
+        <div class="more">
+            <p><i class="fa-solid fa-xmark" onclick="cls()"></i></p>
+            <i class="fa-solid fa-moon" onclick="color()"></i>
+        <button onclick="clr()">Clear All</button>
+        </div>
+    </main>
 </body>
+
 </html>
+<script>
+    var input = document.getElementById("int");
+    var container = document.querySelector(".container");
+
+    function addd() {
+        if (input.value.trim() === "") {
+            alert("Please enter a task!");
+            return;
+        }
+        var section = document.createElement("section");
+        section.innerHTML = input.value + "<button><input type='checkbox' >Completed <button onclick='remove(event)'>Delete</button></button> ";
+        container.append(section);
+        input.value = "";
+    }
+    
+    function remove(event) {
+        event.target.parentElement.remove();
+    }
+    function clr() {
+        document.querySelector(".container").innerHTML = "";
+    }
+    function color() {
+        document.body.style.backgroundColor = "black";
+        document.querySelector("header").style.backgroundColor = "white";
+        document.querySelector("header").style.color = "black";
+        document.querySelector("i").style.color = "red";
+        document.querySelectorAll("button").forEach(btn => btn.style.backgroundColor = "white");
+        document.querySelector("#input").style.color = "white";
+        document.querySelectorAll("input").forEach(input => {
+            input.style.borderBottom = "2px solid white";
+
+        }); document.querySelectorAll("input").forEach(input => {
+            input.style.color = "white"
+        });
+
+    }
+    
+</script>
